@@ -1,11 +1,16 @@
 import express from "express";
 import parser from "ua-parser-js";
 import { RateLimiter } from "./rate-limiter";
+import { LIMITER_LIMIT, LIMITER_INTERVAL, LIMITER_CONCURRENT } from "./config";
 import { send } from "./send";
 import { log } from "./logs";
 
 export const server = express().use(express.json());
-const limiter = new RateLimiter({ limit: 10, interval: 30_000, concurrent: 2 });
+const limiter = new RateLimiter({
+    limit: LIMITER_LIMIT,
+    interval: LIMITER_INTERVAL,
+    concurrent: LIMITER_CONCURRENT,
+});
 
 server.get("/", (req, res) => {
     res.json({ success: true, data: { message: "Alive." } });

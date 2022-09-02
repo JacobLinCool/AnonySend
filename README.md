@@ -12,3 +12,5 @@ Features:
 1. Setup `.env` file, see `.env.example` for an example
 2. Build the project: `pnpm build`
 3. Run it: `pnpm start`
+
+Checkout [`src/config.ts`](src/config.ts) for more configuration options.
