@@ -5,7 +5,7 @@ import { LIMITER_LIMIT, LIMITER_INTERVAL, LIMITER_CONCURRENT } from "./config";
 import { send } from "./send";
 import { log } from "./logs";
 
-export const server = express().use(express.json());
+export const server: express.Express = express().use(express.json());
 const limiter = new RateLimiter({
     limit: LIMITER_LIMIT,
     interval: LIMITER_INTERVAL,

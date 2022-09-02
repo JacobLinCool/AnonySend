@@ -1,0 +1,15 @@
+version: "3.9"
+name: "AnonySend"
+
+services:
+  anonysend:
+    build:
+      context: .
+      target: anonysend
+    image: "jacoblincool/anonysend:latest"
+    container_name: "anonysend"
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
