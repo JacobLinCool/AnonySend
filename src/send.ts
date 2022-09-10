@@ -9,6 +9,7 @@ export async function send(
     to: string,
     content: string,
     info: string[] = [],
+    labels = ["anonysend"],
 ): Promise<{ success: boolean; link: string }> {
     if (!WHITE_LIST.test(to)) {
         throw new Error("Destination not allowed.");
@@ -30,7 +31,7 @@ export async function send(
         .map((t) => "> " + t)
         .join("\n")}`;
 
-    const { data } = await octokit.rest.issues.create({ owner, repo, title, body });
+    const { data } = await octokit.rest.issues.create({ owner, repo, title, body, labels });
 
     return { success: true, link: data.html_url };
 }
